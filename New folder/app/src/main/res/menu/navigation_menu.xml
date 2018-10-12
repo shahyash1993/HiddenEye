@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/nav_account"
+        android:title="My Account"
+        android:icon="@mipmap/baseline_person_black_18dp"/>
+
+    <item android:id="@+id/nav_settings"
+        android:title="Settings"/>
+
+    <item android:id="@+id/nav_howToUse"
+        android:title="How To Use"/>
+
+    <item android:id="@+id/nav_aboutMe"
+        android:title="About Me"/>
+
+    <item android:id="@+id/nav_contactMe"
+        android:title="Contact Me"/>
+
+
+</menu>
