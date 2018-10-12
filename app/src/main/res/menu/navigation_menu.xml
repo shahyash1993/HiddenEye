@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/nav_account"
-        android:title="@string/settings"
+    <item android:id="@+id/nav_home"
+        android:title="@string/home"
         android:icon="@mipmap/settings"/>
 
     <item android:id="@+id/nav_settings"
+        android:title="@string/settings"
+        android:icon="@mipmap/settings"/>
+
+    <item android:id="@+id/nav_howToUse"
         android:title="@string/how_to_use"
         android:icon="@mipmap/how_to"/>
 
@@ -17,7 +21,7 @@
         android:title="@string/contact_me"
         android:icon="@mipmap/contact"/>
 
-    <item android:id="@+id/nav_howToUse"
+    <item android:id="@+id/nav_logout"
         android:title="@string/logout"
         android:icon="@mipmap/logout"/>
 

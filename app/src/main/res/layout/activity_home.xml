@@ -13,8 +13,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
         <include layout="@layout/navigation_action"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -25,13 +24,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:text="Home"
+            android:text="@string/home"
             android:textAlignment="center"
-            android:textSize="20dp"
+            android:textSize="20sp"
             />
     </LinearLayout>
     
     <android.support.design.widget.NavigationView
+        android:id="@+id/navigationView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:menu="@menu/navigation_menu"
