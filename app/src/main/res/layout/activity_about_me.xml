@@ -8,6 +8,8 @@
     android:id="@+id/drawerLayout"
     >
 
+    <!-- Inner content -->
+
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -16,9 +18,6 @@
         android:orientation="vertical"
         android:background="@color/grayLight"
         >
-        <include layout="@layout/navigation_action"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="242dp">
@@ -214,17 +213,9 @@
                     android:text="@string/linkedin_link"/>
             </LinearLayout>
         </LinearLayout>
-        <Button
-            android:textColor="#fff"
-            android:background="@mipmap/logout"
-            android:layout_marginTop="35dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Follow Me"/>
     </LinearLayout>
 
-
+    <!-- End of Inner content-->
 
     <android.support.design.widget.NavigationView
         android:id="@+id/navigationView"

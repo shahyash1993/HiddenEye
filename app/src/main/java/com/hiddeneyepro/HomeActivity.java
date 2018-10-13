@@ -17,8 +17,6 @@ public class HomeActivity extends AppCompatActivity{
     private String TAG =  "HomeActivity";
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mActionBarDrawerToggle;
-    private Toolbar mToolBar;
-
     private NavigationView mNavigationView;
 
     @Override
@@ -26,9 +24,11 @@ public class HomeActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        mToolBar = (Toolbar) findViewById(R.id.nav_action);
-        setSupportActionBar(mToolBar);
+        init();
+    }//end of onCreate
 
+    public void init(){
+        //Configure Drawer-Layout
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         mActionBarDrawerToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open, R.string.close);
 
@@ -38,42 +38,41 @@ public class HomeActivity extends AppCompatActivity{
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("_HiddenEye_");
 
-
+        //Configure Navigation-View and implement listners
         mNavigationView = (NavigationView) findViewById(R.id.navigationView);
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    Log.e(TAG,"OnNavigationItemSelectedListener > item: "+item.toString());
-                    Log.e(TAG,"onNavigationItemSelected > itemID: "+item.getItemId());
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Log.e(TAG,"OnNavigationItemSelectedListener > item: "+item.toString());
+                Log.e(TAG,"onNavigationItemSelected > itemID: "+item.getItemId());
 
-                    //new
-                    switch(item.getItemId()){
-                        case R.id.nav_home:
-                            startActivity(new Intent(HomeActivity.this, HomeActivity.class));
-                            break;
-                        case R.id.nav_settings:
-                            startActivity(new Intent(HomeActivity.this, HomeActivity.class));
-                            break;
-                        case R.id.nav_howToUse:
-                            startActivity(new Intent(HomeActivity.this, HowToUseActivity.class));
-                            break;
-                        case R.id.nav_aboutMe:
-                            startActivity(new Intent(HomeActivity.this, AboutMeActivity.class));
-                            break;
-                        case R.id.nav_contactMe:
-                            startActivity(new Intent(HomeActivity.this, ContactMeActivity.class));
-                            break;
-                        case R.id.nav_logout:
-                            startActivity(new Intent(HomeActivity.this, LoginActivity.class));
-                            break;
-                    }
-                    //new
-
-                    return true;
+                //new
+                switch(item.getItemId()){
+                    case R.id.nav_home:
+                        startActivity(new Intent(HomeActivity.this, HomeActivity.class));
+                        break;
+                    case R.id.nav_settings:
+                        startActivity(new Intent(HomeActivity.this, HomeActivity.class));
+                        break;
+                    case R.id.nav_howToUse:
+                        startActivity(new Intent(HomeActivity.this, HowToUseActivity.class));
+                        break;
+                    case R.id.nav_aboutMe:
+                        startActivity(new Intent(HomeActivity.this, AboutMeActivity.class));
+                        break;
+                    case R.id.nav_contactMe:
+                        startActivity(new Intent(HomeActivity.this, ContactMeActivity.class));
+                        break;
+                    case R.id.nav_logout:
+                        startActivity(new Intent(HomeActivity.this, LoginActivity.class));
+                        break;
                 }
-            });
+                //new
 
-    }
+                return true;
+            }
+        });
+    }//end of init
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -83,6 +82,4 @@ public class HomeActivity extends AppCompatActivity{
             }
         return super.onOptionsItemSelected(item);
     }// end onOptionsItemSelected
-
-
-}
+}//end class

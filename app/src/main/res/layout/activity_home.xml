@@ -8,15 +8,17 @@
     android:id="@+id/drawerLayout"
     >
 
+    <!--Inner content-->
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <include layout="@layout/navigation_action"
+
+        <!--<include layout="@layout/delete_it_navigation_action"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"/>-->
 
 
         <TextView
@@ -29,7 +31,10 @@
             android:textSize="20sp"
             />
     </LinearLayout>
-    
+
+
+    <!-- End of Inner Content-->
+
     <android.support.design.widget.NavigationView
         android:id="@+id/navigationView"
         android:layout_width="match_parent"

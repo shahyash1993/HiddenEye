@@ -22,7 +22,6 @@ public class AboutMeActivity extends AppCompatActivity {
     private String TAG =  "AboutMeActivity";
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mActionBarDrawerToggle;
-    private Toolbar mToolBar;
 
     TextView gitHubLink_tv;
     TextView linkedinLink_tv;
@@ -34,14 +33,35 @@ public class AboutMeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_me);
 
-        //about me basics
         gitHubLink_tv = findViewById(R.id.gitHubLink_tv);
         linkedinLink_tv = findViewById(R.id.linkedinLink_tv);
 
-        //Drawer and ActionBar
-        mToolBar = (Toolbar) findViewById(R.id.nav_action);
-        setSupportActionBar(mToolBar);
+        init();
 
+    }//end of onCreate
+
+
+    public void onGithubLinkClick(View view) {
+        goToUrl(((TextView)view).getText().toString());
+    }//end of onGitHubClick
+
+    public void onLinkedinLinkClick(View view) {
+        goToUrl(((TextView)view).getText().toString());
+    }//end of onLinkedinLinkClick
+
+    /*
+    *  Goes to specific URL.
+    * */
+    public void goToUrl(String url){
+        if (!url.startsWith("http://") && !url.startsWith("https://")) url = "http://" + url;
+
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        startActivity(browserIntent);
+    }//end of goToUrl
+
+    //init()
+    public void init(){
+        //Configure Drawer-Layout
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         mActionBarDrawerToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open, R.string.close);
 
@@ -51,12 +71,15 @@ public class AboutMeActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("_HiddenEye_");
 
-
+        //Configure Navigation-View and implement listners
         mNavigationView = (NavigationView) findViewById(R.id.navigationView);
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Log.e(TAG,"OnNavigationItemSelectedListener > item: "+item.toString());
+                Log.e(TAG,"onNavigationItemSelected > itemID: "+item.getItemId());
 
+                //new
                 switch(item.getItemId()){
                     case R.id.nav_home:
                         startActivity(new Intent(AboutMeActivity.this, HomeActivity.class));
@@ -77,11 +100,12 @@ public class AboutMeActivity extends AppCompatActivity {
                         startActivity(new Intent(AboutMeActivity.this, LoginActivity.class));
                         break;
                 }
+                //new
 
                 return true;
             }
         });
-    }
+    }//end of init
 
     /*
      *  When the item from options is selected.
@@ -95,21 +119,4 @@ public class AboutMeActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }// end onOptionsItemSelected
 
-    public void onGithubLinkClick(View view) {
-        goToUrl(((TextView)view).getText().toString());
-    }//end of onGitHubClick
-
-    public void onLinkedinLinkClick(View view) {
-        goToUrl(((TextView)view).getText().toString());
-    }//end of onLinkedinLinkClick
-
-    /*
-    *  Goes to specific URL.
-    * */
-    public void goToUrl(String url){
-        if (!url.startsWith("http://") && !url.startsWith("https://")) url = "http://" + url;
-
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-        startActivity(browserIntent);
-    }//end of goToUrl
 }//end class
