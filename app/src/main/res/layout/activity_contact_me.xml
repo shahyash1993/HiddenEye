@@ -6,10 +6,244 @@
     android:layout_height="match_parent"
     tools:context=".ContactMeActivity">
 
+
+    <!--            -->
+    <!--Main Image  -->
+    <!--            -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+        android:layout_alignParentStart="true"
+
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="3dp"
+        android:src="@drawable/y5" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="225dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+
+        android:text="Contact Me"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#ffffff"
+        android:textSize="28sp" />
+
+    <!--            -->
+    <!--Mobile Phone  -->
+    <!--            -->
+
+    <ImageView
+        android:layout_width="35dp"
+        android:layout_height="35sp"
+        android:layout_alignParentStart="true"
+        android:id="@+id/mobile_iv"
+        android:clickable="true"
+        android:onClick="onMobileClick"
+
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="17dp"
+        android:layout_marginLeft="17dp"
+
+        android:layout_marginTop="300dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:src="@mipmap/call" />
+
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Contact Me" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="112dp"
+        android:layout_marginTop="295dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+
+        android:text="@string/myMobileNo"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="18sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="112dp"
+        android:layout_marginTop="320dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+
+        android:text="Mobile"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="15sp" />
+
+    <ImageView
+        android:layout_width="35dp"
+        android:layout_height="35sp"
+        android:layout_alignParentStart="true"
+
+        android:id="@+id/mobileMsg_iv"
+        android:clickable="true"
+        android:onClick="onMobileMsgClick"
+
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="337dp"
+        android:layout_marginLeft="337dp"
+
+        android:layout_marginTop="300dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:src="@mipmap/message" />
+
+    <!--            -->
+    <!--Work Phone  -->
+    <!--            -->
+    <ImageView
+        android:layout_width="35dp"
+        android:layout_height="35sp"
+        android:layout_alignParentStart="true"
+        android:id="@+id/work_iv"
+        android:clickable="true"
+        android:onClick="onWorkClick"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="17dp"
+        android:layout_marginLeft="17dp"
+
+        android:layout_marginTop="380dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:src="@mipmap/call" />
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="112dp"
+        android:layout_marginTop="375dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+
+        android:text="@string/myWorkNo"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="18sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="112dp"
+        android:layout_marginTop="400dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+
+        android:text="Work"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="15sp" />
+
+    <ImageView
+        android:layout_width="35dp"
+        android:layout_height="35sp"
+        android:layout_alignParentStart="true"
+
+        android:id="@+id/workMsg_iv"
+        android:clickable="true"
+        android:onClick="onWorkMsgClick"
+
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="337dp"
+        android:layout_marginLeft="337dp"
+
+        android:layout_marginTop="380dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:src="@mipmap/message" />
+
+    <!--            -->
+    <!--Email       -->
+    <!--            -->
+    <ImageView
+        android:layout_width="35dp"
+        android:layout_height="35sp"
+        android:layout_alignParentStart="true"
+        android:id="@+id/email_iv"
+        android:clickable="true"
+        android:onClick="onEmailClick"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="17dp"
+        android:layout_marginLeft="17dp"
+
+        android:layout_marginTop="490dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:src="@mipmap/email" />
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="112dp"
+        android:layout_marginTop="485dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+
+        android:text="@string/myEmailID"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="18sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="112dp"
+        android:layout_marginTop="513dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+
+        android:text="Email"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="15sp" />
+
 </RelativeLayout>

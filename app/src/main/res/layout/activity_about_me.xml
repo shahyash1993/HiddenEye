@@ -165,26 +165,31 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="20dp"
-                    android:text="+1 (619)416-4464"/>
+                    android:text="@string/myMobileNo"
+                    />
             </LinearLayout>
             <LinearLayout
                 android:layout_marginTop="25dp"
                 android:orientation="horizontal"
                 android:paddingLeft="25dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                >
                 <ImageView
                     android:layout_width="36dp"
                     android:layout_height="36dp"
                     android:src="@mipmap/github"/>
                 <TextView
                     android:textStyle="bold"
-
+                    android:id="@+id/gitHubLink_tv"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="onGithubLinkClick"
                     android:layout_gravity="center_vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="20dp"
-                    android:text="www.github.com/shahyash1993"/>
+                    android:text="@string/github_link"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_marginTop="25dp"
@@ -198,12 +203,15 @@
                     android:src="@mipmap/linkedin"/>
                 <TextView
                     android:textStyle="bold"
-
+                    android:id="@+id/linkedinLink_tv"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="onLinkedinLinkClick"
                     android:layout_gravity="center_vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="20dp"
-                    android:text="www.linkedin.com/in/shahyash1993/"/>
+                    android:text="@string/linkedin_link"/>
             </LinearLayout>
         </LinearLayout>
         <Button

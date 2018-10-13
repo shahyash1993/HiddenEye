@@ -2,6 +2,7 @@ package com.hiddeneyepro;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -12,14 +13,19 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import mehdi.sakout.aboutpage.AboutPage;
 
 public class AboutMeActivity extends AppCompatActivity {
-    private String TAG =  "HomeActivity";
+    private String TAG =  "AboutMeActivity";
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mActionBarDrawerToggle;
     private Toolbar mToolBar;
+
+    TextView gitHubLink_tv;
+    TextView linkedinLink_tv;
 
     private NavigationView mNavigationView;
 
@@ -28,9 +34,9 @@ public class AboutMeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_me);
 
-        //about me stuff
-
-
+        //about me basics
+        gitHubLink_tv = findViewById(R.id.gitHubLink_tv);
+        linkedinLink_tv = findViewById(R.id.linkedinLink_tv);
 
         //Drawer and ActionBar
         mToolBar = (Toolbar) findViewById(R.id.nav_action);
@@ -50,8 +56,6 @@ public class AboutMeActivity extends AppCompatActivity {
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Log.e(TAG,"OnNavigationItemSelectedListener > item: "+item.toString());
-                Log.e(TAG,"onNavigationItemSelected > itemID: "+item.getItemId());
 
                 switch(item.getItemId()){
                     case R.id.nav_home:
@@ -78,6 +82,10 @@ public class AboutMeActivity extends AppCompatActivity {
             }
         });
     }
+
+    /*
+     *  When the item from options is selected.
+     * */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(mActionBarDrawerToggle.onOptionsItemSelected(item)) {
@@ -86,4 +94,22 @@ public class AboutMeActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }// end onOptionsItemSelected
-}
+
+    public void onGithubLinkClick(View view) {
+        goToUrl(((TextView)view).getText().toString());
+    }//end of onGitHubClick
+
+    public void onLinkedinLinkClick(View view) {
+        goToUrl(((TextView)view).getText().toString());
+    }//end of onLinkedinLinkClick
+
+    /*
+    *  Goes to specific URL.
+    * */
+    public void goToUrl(String url){
+        if (!url.startsWith("http://") && !url.startsWith("https://")) url = "http://" + url;
+
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        startActivity(browserIntent);
+    }//end of goToUrl
+}//end class
