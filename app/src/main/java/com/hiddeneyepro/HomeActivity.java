@@ -64,7 +64,11 @@ public class HomeActivity extends AppCompatActivity{
                         startActivity(new Intent(HomeActivity.this, ContactMeActivity.class));
                         break;
                     case R.id.nav_logout:
-                        startActivity(new Intent(HomeActivity.this, LoginActivity.class));
+                        //clear the IntentStack once the user clicks on Logout.
+                        Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                        HomeActivity.this.finish();
                         break;
                 }
                 //new

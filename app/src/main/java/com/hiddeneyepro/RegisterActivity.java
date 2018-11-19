@@ -17,6 +17,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.hiddeneyepro.helper.Config;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,7 +26,7 @@ public class RegisterActivity extends Activity {
     EditText usernameBox, passwordBox, nameBox, emailBox, phoneNumberBox;
     Button registerButton;
     TextView loginLink;
-    String URL = "http://192.168.112.2:9080/HiddenEye/rest/DBConnection/register";
+    String URL = Config.REST_URL+"/register";
     String TAG = "RegisterActivity> ";
 
     @Override

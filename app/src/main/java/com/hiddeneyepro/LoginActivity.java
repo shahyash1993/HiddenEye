@@ -1,9 +1,11 @@
 package com.hiddeneyepro;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -18,7 +20,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.hiddeneyepro.helper.ActivityHelper;
+import com.hiddeneyepro.helper.Config;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -26,9 +31,9 @@ import java.util.Map;
 public class LoginActivity extends Activity {    EditText usernameBox, passwordBox;
     Button loginButton;
     TextView registerLink;
-    String URL = "http://192.168.112.2:9080/HiddenEye/rest/DBConnection/login";
+    //String URL = "http://192.168.112.2:9080/HiddenEye/rest/DBConnection/login";
+    String URL = Config.REST_URL+"/login";
 
-    String SHARED_PREF_NAME = "HiddenEyePref";
     SharedPreferences pref;
     SharedPreferences.Editor editor;
 
@@ -38,7 +43,7 @@ public class LoginActivity extends Activity {    EditText usernameBox, passwordB
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        pref = getApplicationContext().getSharedPreferences(SHARED_PREF_NAME, 0);
+        pref = getApplicationContext().getSharedPreferences(Config.SHARED_PREF_NAME, 0);
         editor = pref.edit();
 
 
@@ -50,16 +55,10 @@ public class LoginActivity extends Activity {    EditText usernameBox, passwordB
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Admin Privileges
-                /*if(usernameBox.getText().toString().equalsIgnoreCase("adm")
-                        && passwordBox.getText().toString().equalsIgnoreCase("adm")){
-
-                    startActivity(new Intent(LoginActivity.this,HomeActivity.class));
-                    return;
-                }*/
-
                 //For users
                 StringRequest request = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>(){
+
+
                     @Override
                     public void onResponse(String s) {
                         String[] seperatedResponse = s.split("\\|", -1);
@@ -73,8 +72,12 @@ public class LoginActivity extends Activity {    EditText usernameBox, passwordB
                             email= seperatedResponse[3];
                             phone_number= seperatedResponse[4];
 
+
                             //create a folder - HiddenEye
-                            FileIO.createFolder("HiddenEye");
+                            ActivityHelper.createFolder(""+Environment.getExternalStorageDirectory(),""+Config.APP_FOLDER_NAME);
+                            File newFile = ActivityHelper.
+                                    createFile(""+Environment.getExternalStorageDirectory()+"/"+Config.APP_FOLDER_NAME,
+                                            "ypsFile.jpg", true);
 
                             //save login_id, name, email, phone_number to SharedPref;
                             saveToSharedPref(login_id, name, email, phone_number);
@@ -125,9 +128,25 @@ public class LoginActivity extends Activity {    EditText usernameBox, passwordB
         editor.commit(); // commit changes
     }//end of saveToSharedPref
 
+    /*public boolean createFolder(String folderName){
+        File mediaStorageDir = new File(Environment.getExternalStorageDirectory(),folderName);
+
+        // Create the storage directory if it does not exist
+        if (!mediaStorageDir.exists()){
+            if (!mediaStorageDir.mkdirs()){
+                Log.e( "Folder Creation>>", "failed to create directory:"+mediaStorageDir.toString());
+            }
+            else{
+                Log.e("Folder Creation>>", "Successfully created directory:"+mediaStorageDir.toString());
+                return true;
+            }
+        }
+        return false;
+    }//end func*/
+
     //Remove removeSharedPref
-    public void removeSharedPref(){
+    /*public void removeSharedPref(){
         editor.clear();
-    }//end removeSharedPref
+    }*/
 
 }//end LoginActivity
