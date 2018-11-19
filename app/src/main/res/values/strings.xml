@@ -15,7 +15,13 @@
     <string name="myWorkNo">+1 (619) 416-4464</string>
     <string name="myEmailID">ypshah.13@gmail.com</string>
 
-
-
-
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="click_here_to_register">Click here to register</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="register">Register</string>
+    <string name="go_back_to_login">Go Back To Login</string>
 </resources>
