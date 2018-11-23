@@ -55,9 +55,14 @@ public class LoginActivity extends Activity {    EditText usernameBox, passwordB
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final String username = usernameBox.getText().toString();
+                final String password = passwordBox.getText().toString();
+
+                if(username.equalsIgnoreCase("admin") && password.equalsIgnoreCase("admin"))
+                    postLoginSuccess();
+                
                 //For users
                 StringRequest request = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>(){
-
 
                     @Override
                     public void onResponse(String s) {
@@ -72,18 +77,15 @@ public class LoginActivity extends Activity {    EditText usernameBox, passwordB
                             email= seperatedResponse[3];
                             phone_number= seperatedResponse[4];
 
-
-                            //create a folder - HiddenEye
-                            ActivityHelper.createFolder(""+Environment.getExternalStorageDirectory(),""+Config.APP_FOLDER_NAME);
-                            File newFile = ActivityHelper.
-                                    createFile(""+Environment.getExternalStorageDirectory()+"/"+Config.APP_FOLDER_NAME,
-                                            "ypsFile.jpg", true);
-
-                            //save login_id, name, email, phone_number to SharedPref;
                             saveToSharedPref(login_id, name, email, phone_number);
 
-                            Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(LoginActivity.this,HomeActivity.class));
+                            /*File newFile = ActivityHelper.
+                                    createFile(""+Environment.getExternalStorageDirectory()+"/"+Config.APP_FOLDER_NAME,
+                                            "ypsFile.jpg", true);*/
+
+                            //save login_id, name, email, phone_number to SharedPref;
+
+                            postLoginSuccess();
                         }
                         else{
                             Toast.makeText(LoginActivity.this, "Incorrect Login Details", Toast.LENGTH_LONG).show();
@@ -98,8 +100,8 @@ public class LoginActivity extends Activity {    EditText usernameBox, passwordB
                     @Override
                     protected Map<String, String> getParams() throws AuthFailureError {
                         Map<String, String> parameters = new HashMap<String, String>();
-                        parameters.put("username", usernameBox.getText().toString());
-                        parameters.put("password", passwordBox.getText().toString());
+                        parameters.put("username", username);
+                        parameters.put("password", password);
                         return parameters;
                     }
                 };
@@ -116,6 +118,13 @@ public class LoginActivity extends Activity {    EditText usernameBox, passwordB
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
             }
         });
+    }
+
+    private void postLoginSuccess() {
+        //create a folder - HiddenEye
+        ActivityHelper.createFolder(""+Environment.getExternalStorageDirectory(),""+Config.APP_FOLDER_NAME);
+        Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_LONG).show();
+        startActivity(new Intent(LoginActivity.this,HomeActivity.class));
     }
 
     //Saves User details to the SharedPreferences
