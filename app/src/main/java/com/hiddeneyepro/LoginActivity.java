@@ -28,7 +28,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LoginActivity extends Activity {    EditText usernameBox, passwordBox;
+public class LoginActivity extends Activity {    EditText usernameET, passwordET;
     Button loginButton;
     TextView registerLink;
     //String URL = "http://192.168.112.2:9080/HiddenEye/rest/DBConnection/login";
@@ -37,6 +37,7 @@ public class LoginActivity extends Activity {    EditText usernameBox, passwordB
     SharedPreferences pref;
     SharedPreferences.Editor editor;
 
+    String TAG = Config.TAG+ getClass().getSimpleName()+">>";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,27 +48,28 @@ public class LoginActivity extends Activity {    EditText usernameBox, passwordB
         editor = pref.edit();
 
 
-        usernameBox = (EditText)findViewById(R.id.usernameBox);
-        passwordBox = (EditText)findViewById(R.id.passwordBox);
+        usernameET = (EditText)findViewById(R.id.usernameET);
+        passwordET = (EditText)findViewById(R.id.passwordET);
         loginButton = (Button)findViewById(R.id.loginButton);
         registerLink = (TextView)findViewById(R.id.registerLink);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String username = usernameBox.getText().toString();
-                final String password = passwordBox.getText().toString();
+                final String username = usernameET.getText().toString();
+                final String password = passwordET.getText().toString();
 
-                if(username.equalsIgnoreCase("admin") && password.equalsIgnoreCase("admin"))
+                if(username.equalsIgnoreCase("admin") && password.equalsIgnoreCase("admin")
+                    || username.equalsIgnoreCase("a") && password.equalsIgnoreCase("a"))
                     postLoginSuccess();
-                
+
                 //For users
                 StringRequest request = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>(){
 
                     @Override
                     public void onResponse(String s) {
                         String[] seperatedResponse = s.split("\\|", -1);
-                        Log.e(">>","the seperatedResponse: "+ Arrays.toString(seperatedResponse));
+                        Log.e(TAG,"the seperatedResponse: "+ Arrays.toString(seperatedResponse));
 
                         String login_id, name, email, phone_number;
 

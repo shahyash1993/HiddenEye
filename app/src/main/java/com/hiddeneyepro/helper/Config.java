@@ -12,6 +12,8 @@ public class Config {
 
     public static final String APP_FOLDER_NAME= "HiddenEyePro13";
 
+    public static final String TAG= "HiddenEye::";
+
 
 }//end class
 

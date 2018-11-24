@@ -24,4 +24,6 @@
     <string name="phone_number">Phone Number</string>
     <string name="register">Register</string>
     <string name="go_back_to_login">Go Back To Login</string>
+    <string name="create_account_signup">No Account? Signup</string>
+    <string name="already_have_an_account">Already have an Account ?</string>
 </resources>

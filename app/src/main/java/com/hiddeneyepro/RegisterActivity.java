@@ -23,22 +23,23 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RegisterActivity extends Activity {
-    EditText usernameBox, passwordBox, nameBox, emailBox, phoneNumberBox;
+    EditText usernameET, passwordET, emailET, phoneNumberET;
+    //nameBox
     Button registerButton;
     TextView loginLink;
     String URL = Config.REST_URL+"/register";
-    String TAG = "RegisterActivity> ";
+    String TAG = Config.TAG+ getClass().getSimpleName()+">>";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        nameBox = (EditText)findViewById(R.id.nameBox);
-        emailBox = (EditText)findViewById(R.id.emailBox);
-        usernameBox = (EditText)findViewById(R.id.usernameBox);
-        passwordBox = (EditText)findViewById(R.id.passwordBox);
-        phoneNumberBox = (EditText)findViewById(R.id.phoneNumberBox);
+//        nameBox = (EditText)findViewById(R.id.nameBox);
+        emailET = (EditText)findViewById(R.id.emailET);
+        usernameET = (EditText)findViewById(R.id.usernameET);
+        passwordET = (EditText)findViewById(R.id.passwordET);
+        phoneNumberET = (EditText)findViewById(R.id.phoneNumberET);
 
         registerButton = (Button)findViewById(R.id.registerButton);
         loginLink = (TextView)findViewById(R.id.loginLink);
@@ -69,18 +70,18 @@ public class RegisterActivity extends Activity {
                     @Override
                     protected Map<String, String> getParams() throws AuthFailureError {
                         Map<String, String> parameters = new HashMap<String, String>();
-                        parameters.put("username", usernameBox.getText().toString());
-                        parameters.put("password", passwordBox.getText().toString());
-                        parameters.put("name", nameBox.getText().toString());
-                        parameters.put("email", emailBox.getText().toString());
-                        parameters.put("phoneNumber", phoneNumberBox.getText().toString());
+                        parameters.put("username", usernameET.getText().toString());
+                        parameters.put("password", passwordET.getText().toString());
+                        //parameters.put("name", nameBox.getText().toString());
+                        parameters.put("email", emailET.getText().toString());
+                        parameters.put("phoneNumber", phoneNumberET.getText().toString());
 
                         Log.e(TAG, "Sending: name, email, un, pwd, phNum:"
-                                +nameBox.getText().toString()
-                                +emailBox.getText().toString()
-                                +usernameBox.getText().toString()
-                                +passwordBox.getText().toString()
-                                +phoneNumberBox.getText().toString()
+                                //+nameBox.getText().toString()
+                                +emailET.getText().toString()
+                                +usernameET.getText().toString()
+                                +passwordET.getText().toString()
+                                +phoneNumberET.getText().toString()
                         );
 
                         return parameters;
