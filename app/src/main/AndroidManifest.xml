@@ -2,14 +2,39 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hiddeneyepro">
 
-    <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!--Call SMS Permissions--><!--
+    <uses-permission android:name="android.permission.CALL_PHONE" />-->
+    <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <!-- Camera Permissions -->
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature android:name="android.hardware.camera" />
+
+    <!-- Setting Permissions-->
+    <!--<uses-permission android:name="android.permission.VIBRATE"/>-->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+
+    <!-- Flash Permissions -->
+    <uses-permission android:name="android.permission.FLASHLIGHT"/>
+    <permission
+        android:name="android.permission.FLASHLIGHT"
+        android:permissionGroup="android.permission-group.HARDWARE_CONTROLS"
+        android:protectionLevel="normal"/>
+
+    <!-- File IO Permissions-->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
 
     <application
+
+        android:hardwareAccelerated="false"
+        android:largeHeap="true"
+
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -17,26 +42,27 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".LoginActivity">
+        <activity android:name=".LoginActivity"
+            android:screenOrientation="portrait">
+
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+
+        </activity>
+        <activity android:name=".RegisterActivity" android:screenOrientation="portrait" />
+        <activity android:name=".HomeActivity"
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".HomeActivity">
 
-<!--
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
--->
-        </activity>
-
-        <activity android:name=".AboutMeActivity" />
-        <activity android:name=".ContactMeActivity" />
-        <activity android:name=".HowToUseActivity"/>
+        <activity android:name=".AboutMeActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ContactMeActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".HowToUseActivity" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
