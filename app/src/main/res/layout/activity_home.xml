@@ -9,28 +9,223 @@
     >
 
     <!--Inner content-->
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        tools:context=".MainActivity">
 
-        <!--<include layout="@layout/delete_it_navigation_action"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>-->
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <SurfaceView
+                android:id="@+id/camSurfaceView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_alignParentTop="true"
+                />
 
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/call911_ll">
+
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/btnCall911"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/fab_margin"
+                android:src="@drawable/call911"
+                app:backgroundTint="#ffffff"
+                app:borderWidth="0dp"
+                app:elevation="10dp"
+                android:layout_weight="1"
+                android:color="#99FF0000"
+                android:alpha="0.45"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="@string/home"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            />
-    </LinearLayout>
+            android:layout_alignBottom="@id/call911_ll"
+            android:id="@+id/btnSwitch_ll">
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/btnSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:color="#99FF0000"
+                android:alpha="0.45"
+                android:layout_margin="@dimen/fab_margin"
+                android:src="@drawable/switch_camera_off"
+                app:backgroundTint="#000000"
+                app:borderWidth="0dp"
+                app:elevation="10dp"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/call911_ll"
+            android:layout_toLeftOf="@id/gallery_ll"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:id="@+id/detect_ll"
+            >
+
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/btnMotionDetector"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:color="#FF0000"
+                android:alpha="0.5"
+                android:layout_margin="@dimen/fab_margin"
+
+                android:layout_weight="1"
+                android:src="@drawable/detect_off"
+                app:backgroundTint="#000000"
+                app:borderWidth="0dp"
+                app:elevation="13dp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+
+            android:orientation="vertical"
+            android:id="@+id/countDown_ll">
+
+
+            <TextView
+                android:id="@+id/countDownTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ff0000"
+                android:text=""
+                android:visibility="invisible"
+                android:alpha="0.55"
+                android:layout_gravity="center"
+                android:textSize="75sp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/sensitivityLL"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/call911_ll"
+            android:layout_toLeftOf="@id/gallery_ll"
+            android:gravity="center_horizontal"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sensitivity"
+                android:textColor="@color/about_youtube_color"
+                android:layout_marginRight="5dp"
+                android:textSize="17dp"
+                />
+            <Spinner
+                android:layout_marginLeft="5dp"
+                android:id="@+id/sensitivitySpinner"
+                android:gravity="end"
+                android:textAlignment="textEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/counterLL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/call911_ll"
+            android:layout_toLeftOf="@id/gallery_ll"
+            android:layout_marginTop="30dp"
+            android:gravity="center_horizontal|bottom"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/counter"
+                android:textColor="@color/about_youtube_color"
+                android:layout_marginRight="3dp"
+                android:textSize="17dp"
+                />
+            <Spinner
+                android:layout_marginLeft="3dp"
+                android:id="@+id/counterSpinner"
+                android:gravity="end"
+                android:textAlignment="textEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:id="@+id/gallery_ll"
+            android:orientation="vertical">
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/btnBrightness"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_margin="@dimen/fab_margin"
+                android:src="@drawable/brightness_on"
+                app:backgroundTint="#ffffff"
+                app:borderWidth="0dp"
+                android:color="#FF0000"
+                android:alpha="0.55"
+                app:elevation="10dp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignBottom="@+id/gallery_ll"
+            android:id="@+id/ll5"
+
+            android:orientation="vertical">
+
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/btnFlash"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_margin="@dimen/fab_margin"
+                android:src="@drawable/flash_off"
+                app:backgroundTint="#000000"
+                app:borderWidth="10dp"
+                android:color="#FF0000"
+                android:alpha="0.55"
+                app:elevation="10dp" />
+
+        </LinearLayout>
+    </RelativeLayout>
 
 
     <!-- End of Inner Content-->

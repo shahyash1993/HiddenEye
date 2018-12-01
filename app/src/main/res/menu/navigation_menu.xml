@@ -2,12 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id="@+id/nav_home"
-        android:title="@string/home"
-        android:icon="@mipmap/settings"/>
+        android:title="@string/theft_detection"
+        android:icon="@mipmap/home"/>
 
-    <item android:id="@+id/nav_settings"
-        android:title="@string/settings"
-        android:icon="@mipmap/settings"/>
+    <item android:id="@+id/nav_gallery"
+        android:title="@string/suspicious_images"
+        android:icon="@mipmap/gallery1"/>
 
     <item android:id="@+id/nav_howToUse"
         android:title="@string/how_to_use"

@@ -15,6 +15,22 @@
     <string name="myWorkNo">+1 (619) 416-4464</string>
     <string name="myEmailID">ypshah.13@gmail.com</string>
 
+    <string-array name="sensitivity_array">
+        <item>Highest</item>
+        <item>High</item>
+        <item>Normal</item>
+        <item>Low</item>
+        <item>Lowest</item>
+    </string-array>
+
+    <string-array name="counter_array">
+        <item>5 seconds</item>
+        <item>10 seconds</item>
+        <item>13 seconds</item>
+        <item>15 seconds</item>
+        <item>20 seconds</item>
+    </string-array>
+
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
@@ -26,4 +42,10 @@
     <string name="go_back_to_login">Go Back To Login</string>
     <string name="create_account_signup">No Account? Signup</string>
     <string name="already_have_an_account">Already have an Account ?</string>
+    <string name="gallery">Gallery</string>
+    <string name="suspicious_images">Suspicious Images</string>
+    <string name="welcome">Welcome</string>
+    <string name="theft_detection">Theft Detection</string>
+    <string name="sensitivity">Sensitivity:</string>
+    <string name="counter">Counter:</string>
 </resources>
