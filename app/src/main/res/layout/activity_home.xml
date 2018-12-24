@@ -163,7 +163,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/counter"
+                android:text="@string/timer"
                 android:textColor="@color/about_youtube_color"
                 android:layout_marginRight="3dp"
                 android:textSize="17dp"

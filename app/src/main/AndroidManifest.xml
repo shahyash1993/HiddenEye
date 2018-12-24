@@ -2,67 +2,88 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hiddeneyepro">
 
-    <!--Call SMS Permissions--><!--
-    <uses-permission android:name="android.permission.CALL_PHONE" />-->
+    <!-- Call SMS Permissions -->
+    <!--     <uses-permission android:name="android.permission.CALL_PHONE" /> -->
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <!-- Camera Permissions -->
     <uses-permission android:name="android.permission.CAMERA" />
+
     <uses-feature android:name="android.hardware.camera.autofocus" />
     <uses-feature android:name="android.hardware.camera" />
 
-    <!-- Setting Permissions-->
-    <!--<uses-permission android:name="android.permission.VIBRATE"/>-->
+    <!-- Setting Permissions -->
+    <!-- <uses-permission android:name="android.permission.VIBRATE"/> -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
 
     <!-- Flash Permissions -->
-    <uses-permission android:name="android.permission.FLASHLIGHT"/>
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+
     <permission
         android:name="android.permission.FLASHLIGHT"
         android:permissionGroup="android.permission-group.HARDWARE_CONTROLS"
-        android:protectionLevel="normal"/>
+        android:protectionLevel="normal" />
 
-    <!-- File IO Permissions-->
+    <!-- File IO Permissions -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
-
     <application
-
-        android:hardwareAccelerated="false"
-        android:largeHeap="true"
-
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".LoginActivity"
+        <activity
+            android:name=".LoginActivity"
             android:screenOrientation="portrait">
-
-            <!--<intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
 
-        </activity>
-        <activity android:name=".RegisterActivity" android:screenOrientation="portrait" />
-        <activity android:name=".HomeActivity"
-            android:screenOrientation="landscape">
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <!--
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            -->
         </activity>
+        <activity
+            android:name=".RegisterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".HomeActivity"
+            android:screenOrientation="landscape">
 
-        <activity android:name=".AboutMeActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".ContactMeActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".HowToUseActivity" android:screenOrientation="portrait"/>
+
+        </activity>
+        <activity
+            android:name=".AboutMeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ContactMeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".HowToUseActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".PermissionCheckerActivity"></activity>
+    
+        <receiver android:name=".helper.MyAdminLocker" android:permission="android.permission.BIND_DEVICE_ADMIN">
+            <meta-data android:name="android.app.device_admin" android:resource="@xml/policies"/>
+
+            <intent-filter>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED"/>
+            </intent-filter>
+
+        </receiver>
+
     </application>
 
 </manifest>

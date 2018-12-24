@@ -1,7 +1,9 @@
 package com.hiddeneyepro;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,6 +16,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.hiddeneyepro.helper.ActivityHelper;
+
 import mehdi.sakout.aboutpage.AboutPage;
 
 public class ContactMeActivity extends AppCompatActivity {
@@ -25,8 +29,13 @@ public class ContactMeActivity extends AppCompatActivity {
     private NavigationView mNavigationView;
     final String TAG = "ContactMeActivity";
 
+    Context myContext;
+    SharedPreferences pref;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        myContext = this;
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_me);
 
@@ -54,7 +63,6 @@ public class ContactMeActivity extends AppCompatActivity {
     }//end onMobileClick
 
     public void onEmailClick(View view) {
-
         Intent i = new Intent(Intent.ACTION_SEND);
         i.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{ emailID });
         i.putExtra(android.content.Intent.EXTRA_SUBJECT, "Re: HiddenEye");
@@ -82,6 +90,8 @@ public class ContactMeActivity extends AppCompatActivity {
 
     //init()
     public void init(){
+        ActivityHelper.addWelcomeText(myContext,pref,this);
+
         //Configure Drawer-Layout
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         mActionBarDrawerToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open, R.string.close);
@@ -100,28 +110,7 @@ public class ContactMeActivity extends AppCompatActivity {
                 Log.e(TAG,"OnNavigationItemSelectedListener > item: "+item.toString());
                 Log.e(TAG,"onNavigationItemSelected > itemID: "+item.getItemId());
 
-                //new
-                switch(item.getItemId()){
-                    case R.id.nav_home:
-                        startActivity(new Intent(ContactMeActivity.this, HomeActivity.class));
-                        break;
-                    case R.id.nav_settings:
-                        startActivity(new Intent(ContactMeActivity.this, HomeActivity.class));
-                        break;
-                    case R.id.nav_howToUse:
-                        startActivity(new Intent(ContactMeActivity.this, HowToUseActivity.class));
-                        break;
-                    case R.id.nav_aboutMe:
-                        startActivity(new Intent(ContactMeActivity.this, AboutMeActivity.class));
-                        break;
-                    case R.id.nav_contactMe:
-                        startActivity(new Intent(ContactMeActivity.this, ContactMeActivity.class));
-                        break;
-                    case R.id.nav_logout:
-                        startActivity(new Intent(ContactMeActivity.this, LoginActivity.class));
-                        break;
-                }
-                //new
+                ActivityHelper.redirect(myContext, item.getItemId(), ContactMeActivity.this);
 
                 return true;
             }

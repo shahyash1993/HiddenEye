@@ -1,9 +1,12 @@
 package com.hiddeneyepro;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -16,6 +19,11 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.hiddeneyepro.helper.ActivityHelper;
+import com.hiddeneyepro.helper.Config;
+
+import java.io.File;
+
 import mehdi.sakout.aboutpage.AboutPage;
 
 public class AboutMeActivity extends AppCompatActivity {
@@ -26,10 +34,14 @@ public class AboutMeActivity extends AppCompatActivity {
     TextView gitHubLink_tv;
     TextView linkedinLink_tv;
 
-    private NavigationView mNavigationView;
+    SharedPreferences pref;
 
+    private NavigationView mNavigationView;
+    Context myContext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        myContext = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_me);
 
@@ -61,6 +73,8 @@ public class AboutMeActivity extends AppCompatActivity {
 
     //init()
     public void init(){
+        ActivityHelper.addWelcomeText(myContext,pref,this);
+
         //Configure Drawer-Layout
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         mActionBarDrawerToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open, R.string.close);
@@ -79,28 +93,7 @@ public class AboutMeActivity extends AppCompatActivity {
                 Log.e(TAG,"OnNavigationItemSelectedListener > item: "+item.toString());
                 Log.e(TAG,"onNavigationItemSelected > itemID: "+item.getItemId());
 
-                //new
-                switch(item.getItemId()){
-                    case R.id.nav_home:
-                        startActivity(new Intent(AboutMeActivity.this, HomeActivity.class));
-                        break;
-                    case R.id.nav_settings:
-                        startActivity(new Intent(AboutMeActivity.this, HomeActivity.class));
-                        break;
-                    case R.id.nav_howToUse:
-                        startActivity(new Intent(AboutMeActivity.this, HowToUseActivity.class));
-                        break;
-                    case R.id.nav_aboutMe:
-                        startActivity(new Intent(AboutMeActivity.this, AboutMeActivity.class));
-                        break;
-                    case R.id.nav_contactMe:
-                        startActivity(new Intent(AboutMeActivity.this, ContactMeActivity.class));
-                        break;
-                    case R.id.nav_logout:
-                        startActivity(new Intent(AboutMeActivity.this, LoginActivity.class));
-                        break;
-                }
-                //new
+                ActivityHelper.redirect(myContext, item.getItemId(), AboutMeActivity.this);
 
                 return true;
             }
@@ -113,7 +106,6 @@ public class AboutMeActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(mActionBarDrawerToggle.onOptionsItemSelected(item)) {
-
             return true;
         }
         return super.onOptionsItemSelected(item);
