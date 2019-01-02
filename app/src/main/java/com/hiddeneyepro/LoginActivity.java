@@ -47,7 +47,6 @@ public class LoginActivity extends Activity {    EditText usernameET, passwordET
         pref = getApplicationContext().getSharedPreferences(Config.SHARED_PREF_NAME, 0);
         editor = pref.edit();
 
-
         usernameET = (EditText)findViewById(R.id.usernameET);
         passwordET = (EditText)findViewById(R.id.passwordET);
         loginButton = (Button)findViewById(R.id.loginButton);
@@ -60,8 +59,11 @@ public class LoginActivity extends Activity {    EditText usernameET, passwordET
                 final String password = passwordET.getText().toString();
 
                 if(username.equalsIgnoreCase("admin") && password.equalsIgnoreCase("admin")
-                    || username.equalsIgnoreCase("a") && password.equalsIgnoreCase("a"))
+                    || username.equalsIgnoreCase("a") && password.equalsIgnoreCase("a")){
                     postLoginSuccess();
+                    return;
+                }
+
 
                 //For users
                 StringRequest request = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>(){
@@ -71,15 +73,15 @@ public class LoginActivity extends Activity {    EditText usernameET, passwordET
                         String[] seperatedResponse = s.split("\\|", -1);
                         Log.e(TAG,"the seperatedResponse: "+ Arrays.toString(seperatedResponse));
 
-                        String login_id, name, email, phone_number;
+                        String login_id, username, email, phone_number;
 
                         if(seperatedResponse[0].equals("success")){
                             login_id = seperatedResponse[1];
-                            name= seperatedResponse[2];
+                            username= seperatedResponse[2];
                             email= seperatedResponse[3];
                             phone_number= seperatedResponse[4];
 
-                            saveToSharedPref(login_id, name, email, phone_number);
+                            saveToSharedPref(login_id, username, email, phone_number);
 
                             /*File newFile = ActivityHelper.
                                     createFile(""+Environment.getExternalStorageDirectory()+"/"+Config.APP_FOLDER_NAME,
@@ -125,39 +127,18 @@ public class LoginActivity extends Activity {    EditText usernameET, passwordET
     private void postLoginSuccess() {
         //create a folder - HiddenEye
         ActivityHelper.createFolder(""+Environment.getExternalStorageDirectory(),""+Config.APP_FOLDER_NAME);
-        Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_LONG).show();
-        startActivity(new Intent(LoginActivity.this,HomeActivity.class));
+        Toast.makeText(LoginActivity.this, "Login Successful!", Toast.LENGTH_LONG).show();
+        startActivity(new Intent(LoginActivity.this, PermissionCheckerActivity.class));
     }
 
     //Saves User details to the SharedPreferences
-    private void saveToSharedPref(String login_id, String name, String email, String phone_number) {
+    private void saveToSharedPref(String login_id, String username, String email, String phone_number) {
         editor.putString("login_id", login_id);
-        editor.putString("name", name);
+        editor.putString("username", username);
         editor.putString("email", email);
         editor.putString("phone_number", phone_number);
 
         editor.commit(); // commit changes
     }//end of saveToSharedPref
-
-    /*public boolean createFolder(String folderName){
-        File mediaStorageDir = new File(Environment.getExternalStorageDirectory(),folderName);
-
-        // Create the storage directory if it does not exist
-        if (!mediaStorageDir.exists()){
-            if (!mediaStorageDir.mkdirs()){
-                Log.e( "Folder Creation>>", "failed to create directory:"+mediaStorageDir.toString());
-            }
-            else{
-                Log.e("Folder Creation>>", "Successfully created directory:"+mediaStorageDir.toString());
-                return true;
-            }
-        }
-        return false;
-    }//end func*/
-
-    //Remove removeSharedPref
-    /*public void removeSharedPref(){
-        editor.clear();
-    }*/
 
 }//end LoginActivity
